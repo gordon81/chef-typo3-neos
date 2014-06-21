@@ -35,7 +35,7 @@ site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3-neos']['site
 
 include_recipe "typo3-neos::_database"
 
-include_recipe "typo3-neos::_source"
+#include_recipe "typo3-neos::_source"
 
 if !node['typo3-neos']['webserver'].empty?
   include_recipe "typo3-neos::_apache2"
