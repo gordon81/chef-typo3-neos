@@ -75,14 +75,11 @@ end
 
 
 # download TYPO3 source
-Chef::Log.info "#{site_docroot}
-
-die
-
-"
-typo3_source_directory = "#{site_docroot}"
+Chef::Log.info "
+die"
+puts "#{site_docroot}"
 # download TYPO3 source
-unless File.directory? typo3_source_directory
+unless File.directory?(site_docroot)
   execute "get Neos with Composer in Version #{node['typo3-neos']['version']}" do
      Chef::Log.info "#{site_docroot}"
     cwd "#{site_docroot}"
