@@ -77,11 +77,11 @@ end
 # download TYPO3 source
 Chef::Log.info "
 die"
-puts "#{site_docroot}"
+puts "If dir exists: #{File.directory?(site_docroot)}"
 # download TYPO3 source
 unless File.directory?(site_docroot)
   execute "get Neos with Composer in Version #{node['typo3-neos']['version']}" do
-     Chef::Log.info "#{site_docroot}"
+    Chef::Log.info "#{site_docroot}"
     cwd "#{site_docroot}"
     Chef::Log.info "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
 
