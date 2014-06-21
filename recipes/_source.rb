@@ -33,7 +33,7 @@ site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3-neos']['site
 
 # download TYPO3 source
 unless File.directory? site_docroot
-  execute "get Neon with Composer in Version #{node['typo3-neos']['version']}" do
+  execute "get Neos with Composer in Version #{node['typo3-neos']['version']}" do
     cwd "#{site_docroot}"
     command "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
   end
