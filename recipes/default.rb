@@ -32,39 +32,15 @@ include_recipe "typo3::graphicsmagick"
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3']['site_name']}"
-typo3_source_directory = "#{site_docroot}/typo3_src-#{node['typo3']['version']}"
 
 include_recipe "typo3::_database"
-
-if !node['typo3']['package'].empty?
-  include_recipe "typo3::_package"
+include_recipe "typo3::_source"
+if !node['typo3']['webserver'].empty?
+  include_recipe "typo3::_apache"
 else
-  include_recipe "typo3::_source"
+  include_recipe "typo3::_#{node['typo3']['webserver']}"
 end
 
-# create actual directories, set permissions
-%w{
-  fileadmin
-  typo3conf
-  typo3conf/ext
-  typo3temp
-  uploads
-}.each do |directory|
-  directory "#{site_docroot}/#{directory}" do
-    owner node['apache']['user']
-    group node['apache']['group']
-    mode "0775"
-    recursive true
-  end
-end
-
-# enable install tool
-file "#{site_docroot}/typo3conf/ENABLE_INSTALL_TOOL" do
-  owner node['apache']['user']
-  group node['apache']['group']
-  mode "0775"
-  action :touch
-end
 
 # set php.ini directives as recommended by Install Tool system check
 # can't use the php cookbook's intended way since it only applies to cli
@@ -86,9 +62,18 @@ file "/etc/php5/apache2/conf.d/max_execution_time.ini" do
     notifies :restart, "service[apache2]"
 end
 
+file "/etc/php5/apache2/conf.d/xdebug.max_nesting_level.ini" do
+    owner "root"
+    group "root"
+    mode "0644"
+    action :create
+    content "xdebug.max_nesting_level = 500\n"
+    notifies :restart, "service[apache2]"
+end
+
 # create TYPO3 site / web app
 Chef::Log.info "Setting up TYPO3 site \"#{node['typo3']['site_name']}\""
-web_app node['typo3']['site_name'] do 
+web_app node['typo3']['site_name'] do
   template "typo3-web_app.conf.erb"
   docroot site_docroot
   server_name node['typo3']['server_name']
