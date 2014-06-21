@@ -34,6 +34,7 @@ include_recipe "typo3-neos::graphicsmagick"
 site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3-neos']['site_name']}"
 
 include_recipe "typo3-neos::_database"
+
 include_recipe "typo3-neos::_source"
 
 if !node['typo3-neos']['webserver'].empty?
@@ -72,6 +73,15 @@ file "/etc/php5/apache2/conf.d/xdebug.max_nesting_level.ini" do
     notifies :restart, "service[apache2]"
 end
 
+
+# download TYPO3 source
+unless File.directory? site_docroot
+  execute "get Neos with Composer in Version #{node['typo3-neos']['version']}" do
+    cwd "#{site_docroot}"
+    command "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
+  end
+end
+
 # create TYPO3 site / web app
 Chef::Log.info "Setting up TYPO3 site \"#{node['typo3-neos']['site_name']}\""
 web_app node['typo3-neos']['site_name'] do
@@ -80,3 +90,4 @@ web_app node['typo3-neos']['site_name'] do
   server_name node['typo3-neos']['server_name']
   server_aliases node['typo3-neos']['server_aliases']
 end
+
