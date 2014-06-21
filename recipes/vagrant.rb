@@ -1,6 +1,6 @@
 #
 # Author:: Ingo Renner (<ingo@typo3.org>)
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Recipe:: vagrant
 #
 # Copyright 2014, Ingo Renner
@@ -35,7 +35,7 @@ end
 
 # Install MailCatcher http://mailcatcher.me
 # rquires sqllite headers
-package "sqllite-devel" do 
+package "sqllite-devel" do
   action :install
   case node['platform_family']
   when "rhel","centos"

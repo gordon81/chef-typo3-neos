@@ -1,6 +1,6 @@
 #
 # Author:: Ingo Renner (<ingo@typo3.org>)
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Recipe:: _database
 #
 # Copyright 2014, Ingo Renner
@@ -21,22 +21,22 @@
 
 # define mysql connection parameters
 mysql_connection_info = {
-  :host     => "localhost", 
-  :username => "root", 
+  :host     => "localhost",
+  :username => "root",
   :password => node['mysql']['server_root_password']
 }
 
 # create the database
-mysql_database node['typo3']['db']['database'] do
+mysql_database node['typo3-neos']['db']['database'] do
   connection mysql_connection_info
   action :create
 end
 
 # create database user
-mysql_database_user node['typo3']['db']['user'] do
+mysql_database_user node['typo3-neos']['db']['user'] do
   connection mysql_connection_info
-  password node['typo3']['db']['password']
-  database_name node['typo3']['db']['database']
+  password node['typo3-neos']['db']['password']
+  database_name node['typo3-neos']['db']['database']
   privileges [:select,:update,:insert,:create,:alter,:drop,:delete]
   action :grant
 end

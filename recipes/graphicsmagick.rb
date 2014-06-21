@@ -1,6 +1,6 @@
 #
 # Author:: Ingo Renner (<ingo@typo3.org>)
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Recipe:: graphicsmagick
 #
 # Copyright 2014, Ingo Renner

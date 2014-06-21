@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Definition:: extension
 #
 # Copyright 2013, Ingo Renner
@@ -27,9 +27,9 @@
 # @see http://docs.opscode.com/chef/essentials_cookbook_definitions.html
 
 define :extension, :extension_key => nil do
-  
+
   if params[:extension_key].nil? or params[:extension_key].empty?
     raise ArgumentError, "Missing required argument: extension_key"
   end
-  
+
 end

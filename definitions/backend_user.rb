@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Definition:: backend_user
 #
 # Copyright 2013, Ingo Renner
@@ -21,13 +21,13 @@
 # creates a backend user if it does not exist yet
 
 define :backend_user, :username => nil, :password => nil do
-  
+
   if params[:username].nil? or params[:username].empty?
     raise ArgumentError, "Missing required argument: username"
   end
-  
+
   if params[:password].nil? or params[:password].empty?
     raise ArgumentError, "Missing required argument: password"
   end
-  
+
 end

@@ -1,4 +1,4 @@
-name             'typo3'
+name             'typo3-neos'
 maintainer       'Ingo Renner'
 maintainer_email 'ingo@typo3.org'
 license          'Apache 2.0'

@@ -1,6 +1,6 @@
 #
 # Author:: Ingo Renner (<ingo@typo3.org>)
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Recipe:: _source
 #
 # Copyright 2014, Ingo Renner
@@ -19,8 +19,8 @@
 #
 
 
-site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3']['site_name']}"
-#typo3_source_directory = "#{site_docroot}/typo3_src-#{node['typo3']['version']}"
+site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3-neos']['site_name']}"
+#typo3_source_directory = "#{site_docroot}/typo3_src-#{node['typo3-neos']['version']}"
 
 # set up TYPO3 directory structure
 #directory "#{site_docroot}" do
@@ -33,9 +33,9 @@ site_docroot = "#{node['apache']['docroot_dir']}/site-#{node['typo3']['site_name
 
 # download TYPO3 source
 unless File.directory? site_docroot
-  execute "get Neon with Composer in Version #{node['typo3']['version']}" do
+  execute "get Neon with Composer in Version #{node['typo3-neos']['version']}" do
     cwd "#{site_docroot}"
-    command "composer create-project  --dev --keep-vcs typo3/neos-base-distribution site-#{node['typo3']['site_name']} #{node['typo3']['version']} "
+    command "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
   end
 end
 

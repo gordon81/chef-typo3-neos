@@ -1,6 +1,6 @@
 #
 # Author:: Ingo Renner (<ingo@typo3.org>)
-# Cookbook Name:: typo3
+# Cookbook Name:: typo3-neos
 # Attributes:: default
 #
 # Copyright 2013, Ingo Renner
@@ -19,15 +19,14 @@
 #
 
 # General settings
-default['typo3']['version'] = "6.2.2" # master, 6.0, 6.0.4
-default['typo3']['package'] = "introduction" # bootstrap, government, dummy, blank
-default['typo3']['db']['database'] = "typo3db"
-default['typo3']['db']['user'] = "typo3user"
-default['typo3']['db']['password'] = "typo3password"
+default['typo3-neos']['version'] = "dev-master" # master, 6.0, 6.0.4
+default['typo3-neos']['composerParam'] = "--dev --keep-vcs" # --no-dev
+default['typo3-neos']['db']['database'] = "typo3db"
+default['typo3-neos']['db']['user'] = "typo3user"
+default['typo3-neos']['db']['password'] = "typo3password"
 
-default['typo3']['site_name'] = 'typo3'
-default['typo3']['use_typo3_htaccess'] = true
+default['typo3-neos']['site_name'] = 'typo3'
 
-default['typo3']['server_name'] = [node['fqdn']]
-default['typo3']['server_aliases'] = []
+default['typo3-neos']['server_name'] = [node['fqdn']]
+default['typo3-neos']['server_aliases'] = []
 
