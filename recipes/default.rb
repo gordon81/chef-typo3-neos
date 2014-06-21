@@ -82,7 +82,7 @@ puts "If dir exists: #{File.directory?(site_docroot)}"
 unless File.directory?(site_docroot)
   execute "get Neos with Composer in Version #{node['typo3-neos']['version']}" do
     Chef::Log.info "#{site_docroot}"
-    cwd "#{site_docroot}"
+    cwd "#{node['apache']['docroot_dir']}"
     Chef::Log.info "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
 
     command "composer create-project #{node['typo3-neos']['composerParam']} typo3/neos-base-distribution site-#{node['typo3-neos']['site_name']} #{node['typo3-neos']['version']} "
