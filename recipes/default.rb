@@ -26,7 +26,6 @@ include_recipe "php::module_mysql"
 include_recipe "php::module_apc"
 include_recipe "php::module_gd"
 include_recipe "apache2::mod_php5"
-include_recipe "typo3-neos::graphicsmagick"
 
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
