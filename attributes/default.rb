@@ -24,7 +24,7 @@ default['typo3-neos']['composerParam'] = "--dev --keep-vcs" # --no-dev
 default['typo3-neos']['db']['database'] = "typo3db"
 default['typo3-neos']['db']['user'] = "typo3user"
 default['typo3-neos']['db']['password'] = "typo3password"
-
+default['typo3-neos']['webserver'] =
 default['typo3-neos']['site_name'] = 'typo3'
 
 default['typo3-neos']['server_name'] = [node['fqdn']]
