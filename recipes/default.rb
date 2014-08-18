@@ -51,7 +51,7 @@ file "/etc/php5/apache2/conf.d/upload_max_filesize.ini" do
     group "root"
     mode "0644"
     action :create
-    content "upload_max_filesize = 10M\npost_max_size = 10M\n"
+    content "upload_max_filesize = 265M\npost_max_size = 265M\n"
     notifies :restart, "service[apache2]"
 end
 
@@ -73,6 +73,14 @@ file "/etc/php5/apache2/conf.d/xdebug.max_nesting_level.ini" do
     notifies :restart, "service[apache2]"
 end
 
+file "/etc/php5/apache2/conf.d/date.timezone.ini" do
+    owner "root"
+    group "root"
+    mode "0644"
+    action :create
+    content "date.timezone = Europa/Berlin\n"
+    notifies :restart, "service[apache2]"
+end
 
 # download TYPO3 source
 Chef::Log.info "
